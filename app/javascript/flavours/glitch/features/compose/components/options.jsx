@@ -293,7 +293,6 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(messages.spoiler)}
           />
         )}
-        <LanguageDropdown />
         <DropdownContainer
           disabled={disabled || isEditing}
           icon='ellipsis-h'
