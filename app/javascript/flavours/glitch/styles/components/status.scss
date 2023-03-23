@@ -524,13 +524,13 @@
   align-items: center;
   display: flex;
   margin-top: 8px;
-}
+  justify-content: space-between;
 
-.status__action-bar-button {
-  margin-inline-end: 18px;
-
-  &.icon-button--with-counter {
-    margin-inline-end: 14px;
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 250px;
+    flex-grow: 1;
   }
 }
 
