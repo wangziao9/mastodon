@@ -105,7 +105,7 @@ const initialState = element?.textContent && JSON.parse(element.textContent);
 if (initialState) {
   try {
     // @ts-expect-error
-    initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
+    initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings:v2'));
   } catch (e) {
     initialState.local_settings = {};
   }
