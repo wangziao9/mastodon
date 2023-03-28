@@ -82,6 +82,7 @@
  * @property {string} version
  * @property {boolean} translation_enabled
  * @property {object} local_settings
+ * @property {string} news_bot_id
  */
 
 /**
@@ -149,5 +150,8 @@ export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
+
+// Closed-social-specific settings
+export const newsBotId = getMeta('news_bot_id');
 
 export default initialState;

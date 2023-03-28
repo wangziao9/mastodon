@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { NavLink, Switch, Route } from 'react-router-dom';
-import Links from './links';
+import NewsBotStatuses from './news_bot_statuses';
 import Tags from './tags';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
@@ -13,6 +13,7 @@ import Search from 'flavours/glitch/features/compose/containers/search_container
 import SearchResults from './results';
 import { showTrends } from 'flavours/glitch/initial_state';
 import { Helmet } from 'react-helmet';
+import { newsBotId } from '../../initial_state'
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -74,9 +75,11 @@ class Explore extends React.PureComponent {
                 <NavLink exact to='/explore/tags'>
                   <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
                 </NavLink>
-                <NavLink exact to='/explore/links'>
-                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
-                </NavLink>
+                {newsBotId ? (
+                  <NavLink exact to='/explore/links'>
+                    <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+                  </NavLink>
+                ) : null}
                 {signedIn && (
                   <NavLink exact to='/explore/suggestions'>
                     <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
@@ -86,7 +89,14 @@ class Explore extends React.PureComponent {
 
               <Switch>
                 <Route path='/explore/tags' component={Tags} />
-                <Route path='/explore/links' component={Links} />
+                {newsBotId ? (
+                  <Route path='/explore/links'>
+                    <NewsBotStatuses
+                      accountId={newsBotId}
+                      multiColumn={multiColumn}
+                    />
+                  </Route>
+                ) : null}
                 <Route path='/explore/suggestions' component={Suggestions} />
                 <Route exact path={['/explore', '/explore/posts', '/search']} component={Statuses} componentParams={{ multiColumn }} />
               </Switch>
